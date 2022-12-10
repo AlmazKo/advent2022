@@ -4,19 +4,18 @@ import java.security.MessageDigest
 
 interface Task {
 
+    fun name() = javaClass.simpleName.lowercase()
+
     fun part1(input: Iterable<String>): Any = "No result"
 
     fun part2(input: Iterable<String>): Any = "No result"
 
-    fun readTestInput() = File(javaClass.simpleName.lowercase() + "_test.txt")
-        .readLines()
+    fun readTestInput() = File(name() + "_test.txt").readLines()
 
-    fun readInput() = File(javaClass.simpleName.lowercase() + ".txt")
-        .readLines()
+    fun readInput() = File(name() + ".txt").readLines()
 
     fun execute(test: Boolean = false) {
         val input = if (test) readTestInput() else readInput()
-
         println("Part 1: " + part1(input))
         println("Part 2: " + part2(input))
     }
